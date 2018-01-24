@@ -90,7 +90,7 @@ const styles = {
 
 const AppHome = StackNavigator({
   Home: { screen: MeditationTimer },
-  DrawerMenu: { screen: DrawerMenu } 
+  DrawerMenu: { screen: DrawerMenu }
 });
 
 export default class App extends React.Component {

@@ -19,7 +19,6 @@ class DrawerMenu extends React.Component {
   }
 
   render() {
-    console.log('**+USER IS: ', this.props.user);
 
     return (
       <StyleProvider style={getTheme(material)}>

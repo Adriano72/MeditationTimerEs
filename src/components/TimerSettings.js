@@ -5,9 +5,7 @@ import { DrawerNavigator } from 'react-navigation';
 
 const HomeScreenRouter = DrawerNavigator(
   {
-    Home: { screen: HomeScreen },
-    Chat: { screen: MainScreenNavigator },
-    Profile: { screen: Profile }
+    Home: { screen: TimerSettings }
   },
   {
     contentComponent: props => <SideBar {...props} />

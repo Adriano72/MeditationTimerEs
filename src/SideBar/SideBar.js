@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
-const routes = ["Home", "OpeningPrayer", "ClosingPrayer"];
+const routes = ["Meditation timer", "OpeningPrayer", "ClosingPrayer"];
 export default class SideBar extends React.Component {
   render() {
     return (

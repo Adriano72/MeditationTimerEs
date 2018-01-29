@@ -9,7 +9,7 @@ import { StackNavigator } from "react-navigation";
 
 const HomeScreenRouter = DrawerNavigator(
   {
-    Home: { screen: HomeScreen },
+    'Meditation timer': { screen: HomeScreen },
     OpeningPrayer: { screen: OpeningPrayer },
     ClosingPrayer: { screen: ClosingPrayer }
   },

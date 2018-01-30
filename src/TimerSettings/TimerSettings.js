@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, StatusBar, TextInput } from 'react-native';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem } from 'native-base';
+import { View, StyleSheet, StatusBar, TextInput } from 'react-native';
+import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text} from 'native-base';
 import ModalSelector from 'react-native-modal-selector';
+
+import getTheme from '../../native-base-theme/components';
+import material from '../../native-base-theme/variables/material';
 
 export default class HomeScreen extends React.Component {
   constructor() {
@@ -52,54 +55,57 @@ export default class HomeScreen extends React.Component {
     ];
 
     return (
-      <Container>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate('DrawerOpen')}
-            >
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Meditation Timer</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content padder>
-            <Card>
-                <CardItem>
-                <Body>
-                    <Text>Chat App to talk some awesome people!</Text>
-                </Body>
-                </CardItem>
-            </Card>
-           
-          <Button full rounded primary
-              style={{ marginTop: 10 }}
-              onPress={this.startTimer.bind(this)}
-          >
-            <Text>Comienza a meditar</Text>
-          </Button>
+      <StyleProvider style={getTheme(material)}>
+        <Container style={{ backgroundColor: '#fff8e1' }}>
+          <Header>
+            <Left>
+              <Button
+                transparent
+                onPress={() => this.props.navigation.navigate('DrawerOpen')}
+              >
+                <Icon name="menu" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Meditation Timer</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content padder>
 
-          <Text>{this.state.secondsRemaining}</Text>
+            <View style={{flex:1, justifyContent:'space-around', padding:50}}>
 
-          <View style={{flex:1, justifyContent:'space-around', padding:50}}>
+                  
+                  <ModalSelector
+                      data={data}
+                      initValue="Tiempo de sesión"
+                      onChange={(option) => {
+                        //alert(option.key); 
+                        this.setState({ secondsRemaining: option.key });
+                      }} 
+                  />
 
-                
-                <ModalSelector
-                    data={data}
-                    initValue="Tiempo de sesión"
-                    onChange={(option) => {
-                      //alert(option.key); 
-                      this.setState({ secondsRemaining: option.key });
-                    }} 
-                />
+              </View>
+              <Button
+                danger
+                block style={{ margin: 15, marginTop: 50 }}
+                onPress={this.startTimer.bind(this)}
+              >
+                <Text>Comienza a meditar</Text>
+              </Button>
 
-            </View>
-        </Content>
-      </Container>
+              <Text>{this.state.secondsRemaining}</Text>
+          </Content>
+        </Container>
+      </StyleProvider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+  transpButton: {
+    marginTop: 40,
+    textAlign: 'center'
+  }
+});

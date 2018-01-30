@@ -95,12 +95,12 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: "#3F51B5",
+  brandPrimary: "#F44336",
   brandInfo: "#3F57D3",
   brandSuccess: "#5cb85c",
-  brandDanger: "#d9534f",
+  brandDanger: "#FFC107",
   brandWarning: "#f0ad4e",
-  brandDark: "#000",
+  brandDark: "##D32F2F",
   brandLight: "#f4f4f4",
 
   // Font
@@ -130,8 +130,8 @@ export default {
   tabActiveBgColor: "#3F51B5",
 
   // Header
-  toolbarBtnColor: "#fff",
-  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "#3F51B5",
+  toolbarBtnColor: "#212121",
+  toolbarDefaultBg: platform === "ios" ? "#C60B1E" : "#3F51B5",
   toolbarHeight: platform === "ios" ? (isIphoneX ? 88 : 64) : 56,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
   toolbarInputColor: "#fff",
@@ -231,7 +231,7 @@ export default {
   titleFontSize: 19,
   subTitleFontSize: 14,
   subtitleColor: "#FFF",
-  titleFontColor: "#FFF",
+  titleFontColor: "#212121",
 
   // Other
   borderRadiusBase: 2,

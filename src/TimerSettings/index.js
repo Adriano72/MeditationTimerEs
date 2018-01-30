@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomeScreen from "./HomeScreen.js";
+import TimerSettings from "./TimerSettings.js";
 import OpeningPrayer from "../OpeningPrayer/index.js";
 import ClosingPrayer from "../ClosingPrayer/index.js";
 import SideBar from "../SideBar/SideBar.js";
@@ -9,7 +9,7 @@ import { StackNavigator } from "react-navigation";
 
 const HomeScreenRouter = DrawerNavigator(
   {
-    'Meditation timer': { screen: HomeScreen },
+    'Meditation timer': { screen: TimerSettings },
     OpeningPrayer: { screen: OpeningPrayer },
     ClosingPrayer: { screen: ClosingPrayer }
   },

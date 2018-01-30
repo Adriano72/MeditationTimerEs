@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Expo from 'expo';
-import HomeScreen from './src/HomeScreen/index.js';
+import TimerSettings from './src/TimerSettings/index.js';
 
 export default class AwesomeApp extends Component {
   constructor() {
@@ -22,7 +22,7 @@ export default class AwesomeApp extends Component {
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
-    return <HomeScreen />;
+    return <TimerSettings />;
   }
 }
 

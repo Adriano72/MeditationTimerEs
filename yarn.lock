@@ -5252,6 +5252,12 @@ react-native-maps@0.17.1:
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.17.1.tgz#ab2236341fd984dac8864202ae55331bc262f60c"
 
+react-native-modal-selector@^0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-0.0.24.tgz#d5aa886b6782a4a3566452399deb21a8da7ae2a1"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-safe-module@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-module/-/react-native-safe-module-1.2.0.tgz#a23824ca24edc2901913694a76646475113d570d"

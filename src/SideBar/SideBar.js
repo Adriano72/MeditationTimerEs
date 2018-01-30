@@ -2,24 +2,24 @@ import React from "react";
 import { AppRegistry, Image, StatusBar } from "react-native";
 import { Container, Content, Text, List, ListItem } from "native-base";
 const routes = ["Meditation timer", "OpeningPrayer", "ClosingPrayer"];
+
+import { DRAWER_COVER } from '../images';
+
 export default class SideBar extends React.Component {
   render() {
     return (
       <Container>
         <Content>
           <Image
-            source={{
-              uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/drawer-cover.png"
-            }}
+            source={DRAWER_COVER}
             style={{
               height: 120,
               alignSelf: "stretch",
               justifyContent: "center",
               alignItems: "center"
             }}
-          >
+          />
             
-          </Image>
           <List
             dataArray={routes}
             renderRow={data => {

@@ -100,8 +100,8 @@ export default {
   brandSuccess: "#5cb85c",
   brandDanger: "#FFC107",
   brandWarning: "#f0ad4e",
-  brandDark: "##D32F2F",
-  brandLight: "#f4f4f4",
+  brandDark: "#D32F2F",
+  brandLight: "#FFCDD2",
 
   // Font
   fontFamily: "Roboto",
@@ -131,7 +131,7 @@ export default {
 
   // Header
   toolbarBtnColor: "#212121",
-  toolbarDefaultBg: platform === "ios" ? "#C60B1E" : "#3F51B5",
+  toolbarDefaultBg: platform === "ios" ? "#F44336" : "#F44336",
   toolbarHeight: platform === "ios" ? (isIphoneX ? 88 : 64) : 56,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
   toolbarInputColor: "#fff",
@@ -219,8 +219,8 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
-  inverseTextColor: "#fff",
+  textColor: "#212121",
+  inverseTextColor: "#212121",
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;

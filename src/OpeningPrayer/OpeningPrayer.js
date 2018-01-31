@@ -1,45 +1,50 @@
 import React from "react";
 import { AppRegistry, Alert } from "react-native";
-import { Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text } from "native-base";
-import { StackNavigator } from "react-navigation";
-import EditScreenOne from "./EditScreenOne.js";
+import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2} from "native-base";
+import getTheme from '../../native-base-theme/components';
+import material from '../../native-base-theme/variables/material';
+
 export default class OpeningPrayer extends React.Component {
   
   render() {
     return (
-      <Container>
-        <Content padder>
-          <Card>
-            <CardItem>
-              <Icon active name="paper-plane" />
-              <Text>Show User profiles here</Text>
-              <Right>
-                <Icon name="close" />
-              </Right>
+      <StyleProvider style={getTheme(material)}>
+        <Container style={{ backgroundColor: '#fff8e1' }}>
+          <Content padder>
+          <Card style={{ backgroundColor: '#9E9E9E' }}>
+            <CardItem header>
+              <H2>Oración Inicial</H2>
             </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                Padre celestial, abre nuestros corazones a la presencia silenciosa del Espíritu de tu Hijo.{'\n'}
+                Guíanos a este misterioso silencio donde tu Amor se revela a todo aquél que clama.{'\n'}{'\n'}
+                Maranatá … Ven, Señor Jesús.
+                </Text>
+              </Body>
+            </CardItem>            
           </Card>
-          <Button full rounded primary
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("EditScreenOne")}>
-            <Text>Goto EditScreen One</Text>
-          </Button>
-        </Content>
-      </Container>
+          </Content>
+        </Container>
+      </StyleProvider>
     );
   }
 }
 OpeningPrayer.navigationOptions = ({ navigation }) => ({
   header: (
-    <Header>
-      <Left>
-        <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
-          <Icon name="menu" />
-        </Button>
-      </Left>
-      <Body>
-        <Title>OpeningPrayer</Title>
-      </Body>
-      <Right />
-    </Header>
+    <StyleProvider style={getTheme(material)}>
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
+            <Icon name="menu" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Oración Inicial</Title>
+        </Body>
+        <Right />
+      </Header>
+    </StyleProvider>
   )
 });

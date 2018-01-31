@@ -10,8 +10,8 @@ import { StackNavigator } from "react-navigation";
 const HomeScreenRouter = DrawerNavigator(
   {
     'Meditation timer': { screen: TimerSettings },
-    OpeningPrayer: { screen: OpeningPrayer },
-    ClosingPrayer: { screen: ClosingPrayer }
+    'Oración Inicial': { screen: OpeningPrayer },
+    'Oración de Clausura': { screen: ClosingPrayer }
   },
   {
     contentComponent: props => <SideBar {...props} />

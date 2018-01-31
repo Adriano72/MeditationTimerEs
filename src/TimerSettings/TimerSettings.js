@@ -7,41 +7,38 @@ import Expo, { Audio } from 'expo';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 
-const ding = require('../sounds/LaurenceBowl.mp3');
+const sound = new Expo.Audio.Sound();
 
 export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
       secondsRemaining: 1200,
-      timerStarted: false
+      timerStarted: false,
+      manualStopped: false
     };
   }
-/*
-  async componentDidMount() {
-    await Audio.setAudioModeAsync({
-        playsInSilentLockedModeIOS: true,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-        shouldDuckAndroid: false,
-        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-    });
-    this.setState({loaded: true })
+  componentWillMount = async() => {
+    this.loadSound();
   }
-  */
-
+  /*
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.timerStarted !== nextState.timerStarted) {
+    console.log('*** componentWillUpdate ***');
+    if (nextState.manualStopped !== true && this.state.timerStarted !== nextState.timerStarted) {
       console.log('DINGGGGGGGG!!!!!', nextState.timerStarted);
       this.playSound();
     }
+    if (this.state.manualStopped) {
+      this.setState({ manualStopped: false });
+    }
   }
+  */
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  playSound = async () => {
+  loadSound = async () => {
     await Expo.Audio.setIsEnabledAsync(true);
     await Expo.Audio.setAudioModeAsync(
       { playsInSilentModeIOS: true,
@@ -51,17 +48,31 @@ export default class HomeScreen extends React.Component {
         shouldDuckAndroid: false
       }
     );
-    const sound = new Expo.Audio.Sound();
-    await sound.loadAsync(require('../sounds/LaurenceBowl.mp3'));
     
-    await sound.playAsync();
+    await sound.loadAsync(require('../sounds/LaurenceBowl.mp3')); 
   };
+
+  playSound = async () => {
+    await sound.playAsync();
+  }
+
+  stopSound = async () => {
+    await sound.stopAsync();
+    this.setState({ manualStopped: true });
+  }
 
   startTimer() {
     console.log('START', this.state.secondsRemaining);
+    this.playSound();
     //{ m : parseInt(this.state.secondsRemaining/60), s: (this.state.secondsRemaining%60) };
     this.setState({ secondsRemaining: this.state.secondsRemaining, timerStarted: true });
     this.interval = setInterval(this.tick, 1000);
+  }
+
+  stopTimer = () => {
+    this.setState({ secondsRemaining: 1200, timerStarted: false });
+    this.stopSound();
+    clearInterval(this.interval);    
   }
 
   fmtMSS(s) {
@@ -71,14 +82,10 @@ export default class HomeScreen extends React.Component {
   tick = () => {
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
     if (this.state.secondsRemaining <= 0) {
+      this.stopSound();
       clearInterval(this.interval);
       this.setState({ secondsRemaining: 1200, timerStarted: false });
     }
-  }
-
-  stopTimer = () => {
-    clearInterval(this.interval);
-    this.setState({ secondsRemaining: 1200, timerStarted: false });
   }
 
   render() {
@@ -101,7 +108,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <StyleProvider style={getTheme(material)}>
-        <Container style={{ backgroundColor: '#ffecb3' }}>
+        <Container style={{ backgroundColor: '#fff8e1' }}>
           <Header>
             <Left>
               <Button
@@ -127,10 +134,9 @@ export default class HomeScreen extends React.Component {
                     }} 
               >  
                 <Button
-                  bordered
                   iconLeft
                   dark
-                  block style={{ margin: 15, marginTop: 50 }}
+                  block style={{ margin: 15, marginTop: 100 }}
                 >
                   <Icon name='ios-alarm' />
                   <Text style={{ color: '#212121' }}>{this.state.secondsRemaining / 60}{' '}Min</Text>

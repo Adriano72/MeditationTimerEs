@@ -53,6 +53,7 @@ export default class HomeScreen extends React.Component {
 
   startTimer() {
     console.log('START', this.state.secondsRemaining);
+    this.stopSound();
     this.playSound();
     //{ m : parseInt(this.state.secondsRemaining/60), s: (this.state.secondsRemaining%60) };
     this.setState({ secondsRemaining: this.state.secondsRemaining, timerStarted: true });
@@ -73,6 +74,7 @@ export default class HomeScreen extends React.Component {
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
     if (this.state.secondsRemaining <= 0) {
       this.stopSound();
+      this.playSound();
       clearInterval(this.interval);
       this.setState({ secondsRemaining: 1200, timerStarted: false });
     }
@@ -98,7 +100,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <StyleProvider style={getTheme(material)}>
-        <Container style={{ backgroundColor: '#fff8e1' }}>
+        <Container>
           <Header>
             <Left>
               <Button
@@ -176,9 +178,9 @@ export default class HomeScreen extends React.Component {
             
             <Content padder>
             <View style={{ alignSelf: 'center', paddingTop: '40%' }}>
-              <H1>
+              <Text style={{ fontSize: 60 }}>
                 {this.fmtMSS(this.state.secondsRemaining)}
-              </H1>              
+              </Text>              
               </View>
               <Image
                 source={BOWL}
@@ -189,7 +191,7 @@ export default class HomeScreen extends React.Component {
                   marginVertical: 70   
                 }}
               />
-              <View style={{ alignSelf: 'center', paddingTop: '50%' }}>
+              <View style={{ alignSelf: 'center', paddingTop: '45%' }}>
               <Button 
                 iconLeft
                 dark

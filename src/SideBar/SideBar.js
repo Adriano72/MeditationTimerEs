@@ -16,14 +16,14 @@ export default class SideBar extends React.Component {
           <Content>
           <SafeAreaView>
           <Image
-              source={DRAWER_COVER}
-              style={{
-                height: 120,
-                alignSelf: "stretch",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            /> 
+            source={DRAWER_COVER}
+            style={{
+              height: 120,
+              alignSelf: "stretch",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          /> 
               
             <List
               dataArray={routes}

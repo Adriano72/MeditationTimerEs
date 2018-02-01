@@ -1,38 +1,29 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar, TextInput } from 'react-native';
-import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, H1} from 'native-base';
+import { View, StyleSheet, Image } from 'react-native';
+import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, H1, H2, H3 } from 'native-base';
+import Slider from 'react-native-slider';
 import ModalSelector from 'react-native-modal-selector';
 import Expo, { Audio } from 'expo';
+import { BOWL } from '../images';
 
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 
 const sound = new Expo.Audio.Sound();
 
+
 export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
       secondsRemaining: 1200,
-      timerStarted: false,
-      manualStopped: false
+      bellVolume: 1,
+      timerStarted: false
     };
   }
   componentWillMount = async() => {
     this.loadSound();
   }
-  /*
-  componentWillUpdate(nextProps, nextState) {
-    console.log('*** componentWillUpdate ***');
-    if (nextState.manualStopped !== true && this.state.timerStarted !== nextState.timerStarted) {
-      console.log('DINGGGGGGGG!!!!!', nextState.timerStarted);
-      this.playSound();
-    }
-    if (this.state.manualStopped) {
-      this.setState({ manualStopped: false });
-    }
-  }
-  */
 
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -58,7 +49,6 @@ export default class HomeScreen extends React.Component {
 
   stopSound = async () => {
     await sound.stopAsync();
-    this.setState({ manualStopped: true });
   }
 
   startTimer() {
@@ -76,7 +66,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fmtMSS(s) {
-    return (s-(s%=60))/60+(9<s?':':':0')+s
+    return (s-(s%=60))/60+(9<s?':':':0')+s; // Formatta i secondi in minuti e secondi MM:ss
   }
 
   tick = () => {
@@ -135,20 +125,50 @@ export default class HomeScreen extends React.Component {
               >  
                 <Button
                   iconLeft
+                  bordered
                   dark
-                  block style={{ margin: 15, marginTop: 100 }}
+                  block style={{ margin: 15, marginTop: 10 }}
                 >
-                  <Icon name='ios-alarm' />
-                  <Text style={{ color: '#212121' }}>{this.state.secondsRemaining / 60}{' '}Min</Text>
+                  <Icon name='ios-alarm-outline' />
+                  <Text style={{ color: '#212121' }}>Duración:{' '}{this.state.secondsRemaining / 60}{' '}Min</Text>
                 </Button>
               </ModalSelector>            
               <Button
                 danger
-                block style={{ margin: 15, marginTop: 50 }}
+                
+                block style={{ margin: 15, marginTop: 30 }}
                 onPress={this.startTimer.bind(this)}
               >
                 <Text>Comenzar la Meditación</Text>
               </Button>
+              
+              <Image
+                source={BOWL}
+                style={{
+                  width: null,
+                  resizeMode: 'contain',
+                  height: 120,
+                  marginVertical: 70   
+                }}
+              />
+            
+            <View style={styles.container}>
+            <Text>
+                Volume control
+              </Text>
+              <Slider
+                minimumTrackTintColor = '#D32F2F'
+                maximumTrackTintColor = '#FFCDD2'
+                thumbTintColor = '#D32F2F'
+                value={this.state.bellVolume}
+                onValueChange={value => {
+                  sound.setVolumeAsync(value);
+                  this.setState({ bellVolume: value });
+                  }
+                } 
+              />
+              
+            </View>
                 
             </Content>           
           }
@@ -160,6 +180,15 @@ export default class HomeScreen extends React.Component {
                 {this.fmtMSS(this.state.secondsRemaining)}
               </H1>              
               </View>
+              <Image
+                source={BOWL}
+                style={{
+                  width: null,
+                  resizeMode: 'contain',
+                  height: 120,
+                  marginVertical: 70   
+                }}
+              />
               <View style={{ alignSelf: 'center', paddingTop: '50%' }}>
               <Button 
                 iconLeft
@@ -182,6 +211,9 @@ const styles = StyleSheet.create({
 
   transpButton: {
     marginTop: 40,
+    textAlign: 'center'
+  },
+  centerText: {
     textAlign: 'center'
   }
 });

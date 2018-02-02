@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, H1, H2, H3 } from 'native-base';
+import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Toast, Root } from 'native-base';
 import Slider from 'react-native-slider';
 import ModalSelector from 'react-native-modal-selector';
-import Expo, { Audio } from 'expo';
+import Expo, { Audio, KeepAwake } from 'expo';
 import { BOWL } from '../images';
 
 import getTheme from '../../native-base-theme/components';
@@ -26,7 +26,12 @@ export default class HomeScreen extends React.Component {
   }
 
   componentWillUnmount() {
+    this.unloadSound();
     clearInterval(this.interval);
+  }
+
+  unloadSound = async () => {
+    await sound.unloadAsync();
   }
 
   loadSound = async () => {
@@ -53,6 +58,7 @@ export default class HomeScreen extends React.Component {
 
   startTimer() {
     console.log('START', this.state.secondsRemaining);
+    KeepAwake.activate();
     this.stopSound();
     this.playSound();
     //{ m : parseInt(this.state.secondsRemaining/60), s: (this.state.secondsRemaining%60) };
@@ -63,6 +69,7 @@ export default class HomeScreen extends React.Component {
   stopTimer = () => {
     this.setState({ secondsRemaining: 1200, timerStarted: false });
     this.stopSound();
+    KeepAwake.deactivate();
     clearInterval(this.interval);    
   }
 
@@ -73,9 +80,15 @@ export default class HomeScreen extends React.Component {
   tick = () => {
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
     if (this.state.secondsRemaining <= 0) {
+      Toast.show({
+        text: 'Meditación terminata',
+        duration: 4000
+      });
+      KeepAwake.deactivate();
       this.stopSound();
       this.playSound();
       clearInterval(this.interval);
+      
       this.setState({ secondsRemaining: 1200, timerStarted: false });
     }
   }
@@ -99,6 +112,7 @@ export default class HomeScreen extends React.Component {
     ];
 
     return (
+      <Root>
       <StyleProvider style={getTheme(material)}>
         <Container>
           <Header>
@@ -131,7 +145,7 @@ export default class HomeScreen extends React.Component {
                   dark
                   block style={{ margin: 15, marginTop: 10 }}
                 >
-                  <Icon name='ios-alarm-outline' />
+                  <Icon name='md-timer' />
                   <Text style={{ color: '#212121' }}>Duración:{' '}{this.state.secondsRemaining / 60}{' '}Min</Text>
                 </Button>
               </ModalSelector>            
@@ -177,7 +191,7 @@ export default class HomeScreen extends React.Component {
           {this.state.timerStarted && 
             
             <Content padder>
-            <View style={{ alignSelf: 'center', paddingTop: '40%' }}>
+            <View style={{ alignSelf: 'center', paddingTop: '30%' }}>
               <Text style={{ fontSize: 60 }}>
                 {this.fmtMSS(this.state.secondsRemaining)}
               </Text>              
@@ -191,7 +205,7 @@ export default class HomeScreen extends React.Component {
                   marginVertical: 70   
                 }}
               />
-              <View style={{ alignSelf: 'center', paddingTop: '45%' }}>
+              <View style={{ alignSelf: 'center' }}>
               <Button 
                 iconLeft
                 dark
@@ -205,6 +219,7 @@ export default class HomeScreen extends React.Component {
           }
         </Container>
       </StyleProvider>
+      </Root>
     );
   }
 }

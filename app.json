@@ -1,7 +1,16 @@
 {
   "expo": {
-    "name": "Temporizador de meditación ",
-    "sdkVersion": "23.0.0",
-    "orientation": "portrait"
+   "name": "WCCM Temporizador​",
+   "icon": "http://wccm.org/appicons/AppIcon.png",
+   "version": "1.0.1",
+   "slug": "Temporizador",
+   "sdkVersion": "23.0.0",
+    "orientation": "portrait",
+   "ios": {
+     "bundleIdentifier": "com.adrianomassi.meditationtimeres"
+   },
+   "android": {
+     "package": "com.adrianomassi.meditationtimeres"
+   }
   }
 }

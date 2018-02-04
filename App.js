@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Root } from 'native-base';
 import Expo from 'expo';
 import TimerSettings from './src/TimerSettings/index.js';
 
@@ -22,7 +23,7 @@ export default class AwesomeApp extends Component {
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
-    return <TimerSettings />;
+    return <Root><TimerSettings /></Root>;
   }
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
-import { AppRegistry, Alert } from "react-native";
-import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2} from "native-base";
+import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2 } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 
@@ -19,8 +18,7 @@ export default class OpeningPrayer extends React.Component {
               <Body>
                 <Text>
                 Padre celestial, abre nuestros corazones a la presencia silenciosa del Espíritu de tu Hijo.{'\n'}
-                Guíanos a este misterioso silencio donde tu Amor se revela a todo aquél que clama.{'\n'}{'\n'}
-                Maranatá … Ven, Señor Jesús.
+                Guíanos a este misterioso silencio donde tu Amor se revela a todo aquél que clama Maranatá, ven Señor Jesús.
                 </Text>
               </Body>
             </CardItem>            

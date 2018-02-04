@@ -51,7 +51,7 @@ export default class SideBar extends React.Component {
             iconleft
             transparent 
             warning
-            onPress={() => { Linking.openURL('http://wccm.org'); }}
+            onPress={() => { Linking.openURL('http://wccm.es'); }}
           >
             <Icon name='ios-globe-outline' />
             <Text>WCCM Sitio web</Text>

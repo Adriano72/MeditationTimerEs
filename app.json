@@ -1,8 +1,8 @@
 {
   "expo": {
-   "name": "WCCM Temporizador​",
+   "name": "WCCM Medita",
    "icon": "http://wccm.org/appicons/AppIcon.png",
-   "version": "1.0.1",
+   "version": "1.0.2",
    "slug": "Temporizador",
    "sdkVersion": "23.0.0",
     "orientation": "portrait",

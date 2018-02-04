@@ -1,6 +1,5 @@
 import React from "react";
-import { AppRegistry, Alert } from "react-native";
-import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2} from "native-base";
+import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2 } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 
@@ -19,15 +18,15 @@ export default class ClosingPrayer extends React.Component {
               <Body>
                 <Text>
                 Que este grupo sea un verdadero hogar espiritual para el buscador, un amigo para el
-                solitario y un guía para el desorientado.{'\n'}
+                solitario y un guía para el desorientado.{'\n'}{'\n'}
                 Que el Espíritu Santo fortalezca a los que aquí oramos para servir a todos los que
-                vengan y acogerlos como el Cristo.{'\n'}
+                vengan y acogerlos como el Cristo.{'\n'}{'\n'}
                 Que en el silencio de este cuarto todo sufrimiento, violencia y confusión del mundo
-                encuentren la fuerza que consuela, renueva y enaltece el espíritu humano.{'\n'}
+                encuentren la fuerza que consuela, renueva y enaltece el espíritu humano.{'\n'}{'\n'}
                 Que este silencio sea capaz de abrir los corazones de hombres y mujeres a la visión de
-                Dios y, por lo tanto, entre ellos, en amor y paz, en justicia y dignidad humana.{'\n'}
+                Dios y, por lo tanto, entre ellos, en amor y paz, en justicia y dignidad humana.{'\n'}{'\n'}
                 Que la belleza de la Vida Divina llene con alegre esperanza a este grupo y a los
-                corazones de todos los que aquí oramos.{'\n'}
+                corazones de todos los que aquí oramos.{'\n'}{'\n'}
                 Que todos los que hayamos venido cargados con los problemas de la humanidad nos
                 vayamos agradecidos de la maravilla de la vida humana.{'\n'}{'\n'}
                 Te lo pedimos por Cristo, nuestro Señor. Amén.

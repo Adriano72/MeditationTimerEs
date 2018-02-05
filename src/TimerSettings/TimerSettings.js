@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Platform, Image } from 'react-native';
 import { StyleProvider, Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Toast } from 'native-base';
 import Slider from 'react-native-slider';
 import ModalSelector from 'react-native-modal-selector';
@@ -58,8 +58,6 @@ export default class HomeScreen extends React.Component {
   }
 
   startTimer() {
-    console.log('START', this.state.secondsRemaining);
-    console.log('*** SOuNs STATE: ',)
     KeepAwake.activate();
     this.playSound();
   
@@ -114,9 +112,9 @@ export default class HomeScreen extends React.Component {
     ];
 
     return (  
-          
+
         <StyleProvider style={getTheme(material)}>
-          <Container>
+          <Container style={{ marginTop: (Platform.OS === 'android') ? Expo.Constants.statusBarHeight : 0 }}>
             <Header>
               <Left>
                 <Button

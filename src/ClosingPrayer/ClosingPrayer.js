@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react';
+import { Platform } from 'react-native';
 import { StyleProvider, Container, Header, Left, Body, Title, Card, CardItem, Content, Right, Icon, Button, Text, H2 } from 'native-base';
+import Expo from 'expo';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 
@@ -8,7 +10,7 @@ export default class ClosingPrayer extends React.Component {
   render() {
     return (
       <StyleProvider style={getTheme(material)}>
-        <Container>
+        <Container style={{ marginTop: (Platform.OS === 'android') ? Expo.Constants.statusBarHeight : 0 }}>
           <Content padder>
           <Card style={{ backgroundColor: '#9E9E9E' }}>
             <CardItem header style={{ backgroundColor: '#bdbdbd' }}>
@@ -43,14 +45,14 @@ export default class ClosingPrayer extends React.Component {
 ClosingPrayer.navigationOptions = ({ navigation }) => ({
   header: (
     <StyleProvider style={getTheme(material)}>
-      <Header>
+      <Header style={{ marginTop: (Platform.OS === 'android') ? Expo.Constants.statusBarHeight : 0 }}>
         <Left>
           <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
             <Icon name="menu" />
           </Button>
         </Left>
         <Body>
-          <Title>Oración de Clausura</Title>
+          <Text style={{ fontWeight: 'bold' }}>Oración de Clausura</Text>
         </Body>
         <Right />
       </Header>

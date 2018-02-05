@@ -1,6 +1,6 @@
-import React from "react";
-import { Image, Linking } from "react-native";
-import { StyleProvider, Container, Content, Text, Button, Icon } from "native-base";
+import React from 'react';
+import { Image, Linking, Platform } from 'react-native';
+import { StyleProvider, Container, Content, Text, Button, Icon } from 'native-base';
 import { DRAWER_COVER } from '../images';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
@@ -9,7 +9,7 @@ export default class SideBar extends React.Component {
   render() {
     return (
       <StyleProvider style={getTheme(material)}>
-        <Container>
+        <Container style={{ marginTop: (Platform.OS === 'android') ? Expo.Constants.statusBarHeight : 0 }}>
           <Content>
           
           <Image
